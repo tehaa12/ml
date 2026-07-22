@@ -73,6 +73,6 @@ demo = gr.Interface(fn = predict ,
                     article = article)
 
 print(" make gradio demo interface using gr.Interface \n\n" ,flush=True)
-demo.launch( server_name="0.0.0.0",
-    server_port=int(os.environ.get("PORT", 7860)))
+# demo.launch( server_name="0.0.0.0",
+#     server_port=int(os.environ.get("PORT", 7860)))
 
