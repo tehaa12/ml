@@ -12,7 +12,7 @@ def create_effnetb2(num_classes = 3  ,
     weights = EfficientNet_B2_Weights.DEFAULT
 
     # create effnetb2 model instance
-    model = efficientnet_b2(weights =weights).to(device)
+    model = efficientnet_b2(weights =None).to(device)
 
     # create effnetb3 transforms
     transforms = weights.transforms()
