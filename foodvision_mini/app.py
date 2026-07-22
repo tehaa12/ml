@@ -9,7 +9,7 @@ from model import create_effnetb2
 import os
 from pathlib import Path
 
-print("Import succesfully------\n\n-------------")
+print("Import succesfully------\n\n-------------" , flush=True)
 # setup class name 
 class_names = ['pizza', 'steak', 'sushi']
 
@@ -20,7 +20,7 @@ effnetb2 , effnetb2_transforms = create_effnetb2()
 # load the trained model
 effnetb2.load_state_dict(torch.load(BASE_DIR/"deploy_effnetb2_10_epochs_model.pth" , map_location ="cpu") )
 effnetb2 = effnetb2.to("cpu")
-print("load the trained model \n\n")
+print("load the trained model \n\n" , flush=True)
 
 
 # make a function that return pred label and prob and pred time
@@ -50,7 +50,7 @@ def predict(img) :
 
   return pred_label_prob ,  pred_time
 
-print(" make a function that return pred label and prob and pred time \n\n")
+print(" make a function that return pred label and prob and pred time \n\n" , flush=True)
 # create examples list 
 example_list = [[BASE_DIR/ "examples" / example] for example in os.listdir(BASE_DIR/'examples')]
 
@@ -60,7 +60,7 @@ title = "FoodVision Mini 🍕🥩🍣"
 description = "An [EfficientNetB2 feature extractor](https://pytorch.org/vision/stable/models/generated/torchvision.models.efficientnet_b2.html#torchvision.models.efficientnet_b2) computer vision model to classify images as pizza, steak or sushi."
 article = "Created at [09. PyTorch Model Deployment](https://www.learnpytorch.io/09_pytorch_model_deployment/#74-building-a-gradio-interface)."
 
-print(" Create title, description and article \n\n")
+print(" Create title, description and article \n\n" ,flush=True)
 
 # make gradio demo interface using gr.Interface
 demo = gr.Interface(fn = predict ,
@@ -72,7 +72,7 @@ demo = gr.Interface(fn = predict ,
                     description = description ,
                     article = article)
 
-print(" make gradio demo interface using gr.Interface \n\n")
+print(" make gradio demo interface using gr.Interface \n\n" ,flush=True)
 demo.launch( server_name="0.0.0.0",
     server_port=int(os.environ.get("PORT", 7860)))
 
