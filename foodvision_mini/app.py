@@ -12,11 +12,12 @@ from pathlib import Path
 # setup class name 
 class_names = ['pizza', 'steak', 'sushi']
 
+BASE_DIR = Path(__file__).resolve().parent
 # create effnetb2 model instance 
 effnetb2 , effnetb2_transforms = create_effnetb2()
 
 # load the trained model
-effnetb2.load_state_dict(torch.load("/content/demos/foodvision_mini/deploy_effnetb2_10_epochs_model.pth"))
+effnetb2.load_state_dict(torch.load(BASE_DIR/"deploy_effnetb2_10_epochs_model.pth" , map_location ="cpu") )
 effnetb2 = effnetb2.to("cpu")
 
 # make a function that return pred label and prob and pred time
@@ -46,7 +47,7 @@ def predict(img) :
 
   return pred_label_prob ,  pred_time
 
-BASE_DIR = Path(__file__).parent
+
 # create examples list 
 example_list = [[BASE_DIR/ "examples" / example] for example in os.listdir(BASE_DIR/'examples')]
 
@@ -67,6 +68,6 @@ demo = gr.Interface(fn = predict ,
                     article = article)
 
 
-demo.launch(debug = True ,
-            share=True)
+demo.launch( server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 7860)))
 
