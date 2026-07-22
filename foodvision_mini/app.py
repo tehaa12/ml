@@ -15,6 +15,7 @@ class_names = ['pizza', 'steak', 'sushi']
 
 BASE_DIR = Path(__file__).resolve().parent
 # create effnetb2 model instance 
+print("2. Before create_effnetb2", flush=True)
 effnetb2 , effnetb2_transforms = create_effnetb2()
 
 # load the trained model
@@ -73,6 +74,6 @@ demo = gr.Interface(fn = predict ,
                     article = article)
 
 print(" make gradio demo interface using gr.Interface \n\n" ,flush=True)
-# demo.launch( server_name="0.0.0.0",
-#     server_port=int(os.environ.get("PORT", 7860)))
+demo.launch( server_name="0.0.0.0",
+    server_port=int(os.environ.get("PORT", 7860)))
 
